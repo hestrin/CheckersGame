@@ -1,7 +1,7 @@
-package com.mainApp;
+package com.mainApp.controllers;
 
-import com.mainApp.abcConjecture.impl.AbcConjectureServiceImpl;
-import com.model.AbcVerificationCase;
+import com.mainApp.services.abcConjecture.impl.AbcConjectureServiceImpl;
+import com.model.abc.AbcVerificationCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

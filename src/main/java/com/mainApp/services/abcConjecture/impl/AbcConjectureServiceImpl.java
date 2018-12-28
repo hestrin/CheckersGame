@@ -1,7 +1,7 @@
-package com.mainApp.abcConjecture.impl;
+package com.mainApp.services.abcConjecture.impl;
 
-import com.mainApp.abcConjecture.AbcConjectureService;
-import com.model.AbcVerificationCase;
+import com.mainApp.services.abcConjecture.AbcConjectureService;
+import com.model.abc.AbcVerificationCase;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;

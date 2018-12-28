@@ -1,4 +1,4 @@
-package com.mainApp;
+package com.mainApp.controllers;
 
 /**
  * Created by mateusz.malinowski on 09.10.2018.
@@ -11,7 +11,7 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "Greetings from Spring Boot!";
+        return "Spring Boot starting app";
     }
 
 }

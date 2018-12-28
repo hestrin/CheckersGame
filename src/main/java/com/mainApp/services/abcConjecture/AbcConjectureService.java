@@ -1,6 +1,6 @@
-package com.mainApp.abcConjecture;
+package com.mainApp.services.abcConjecture;
 
-import com.model.AbcVerificationCase;
+import com.model.abc.AbcVerificationCase;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

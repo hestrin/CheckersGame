@@ -1,4 +1,4 @@
-package com.model;
+package com.model.abc;
 
 public enum ConjectureVerificationStatus {
    UNVERIFIED(0),
