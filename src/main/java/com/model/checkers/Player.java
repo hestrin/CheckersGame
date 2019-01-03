@@ -11,6 +11,14 @@ public enum Player {
         this.color =  aColor;
     }
 
+    public Player getOpponent() {
+        if(this.equals(Player.BLACK))
+            return Player.WHITE;
+        else if(this.equals(Player.WHITE))
+            return Player.BLACK;
+        return Player.NONE;
+    }
+
     public int getDirection() {
         return direction;
     }

@@ -1,9 +1,7 @@
 package com.mainApp.controllers;
 
-import com.mainApp.services.abcConjecture.impl.AbcConjectureServiceImpl;
 import com.mainApp.services.checkers.BoardService;
 import com.mainApp.services.checkers.CheckersService;
-import com.mainApp.services.checkers.impl.BoardServiceImpl;
 import com.model.board.BoardType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/board")
-public class BoardController {
+public class CheckersController {
 
     @Autowired
     BoardService boardService;
@@ -21,19 +18,22 @@ public class BoardController {
     @Autowired
     CheckersService checkersService;
 
-    @RequestMapping(value = "/new",
+    @RequestMapping(value = "/restart",
             method=RequestMethod.GET,
             produces=MediaType.TEXT_PLAIN_VALUE)
-    public String drawBoard() {
-        return boardService.drawBoard(BoardType.CHECKERS);
+    public String restart() { return boardService.draw(checkersService.restartGame()); }
+
+    @RequestMapping(value = "/play",
+            method=RequestMethod.GET,
+            produces=MediaType.TEXT_PLAIN_VALUE)
+    public String play() {
+        return boardService.draw(checkersService.nextMove());
     }
 
-    @RequestMapping(value = "/checkers",
+    @RequestMapping(value = "/showGame",
             method=RequestMethod.GET,
             produces=MediaType.TEXT_PLAIN_VALUE)
-    public String checkersGame() {
-        return checkersService.applyPostion(boardService.drawBoard(BoardType.CHECKERS));
-    }
+    public String showGame() { return boardService.draw(checkersService.showGame()); }
 
     @Autowired
     public void setBoardService(BoardService boardService) {
