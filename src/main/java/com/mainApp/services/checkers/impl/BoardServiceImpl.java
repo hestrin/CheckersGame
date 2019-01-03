@@ -1,7 +1,8 @@
 package com.mainApp.services.checkers.impl;
 
 import com.mainApp.services.checkers.BoardService;
-import com.model.board.BoardType;
+import com.model.board.BoardHelper;
+import com.model.checkers.GamePosition;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -18,21 +19,13 @@ public class BoardServiceImpl implements BoardService {
     private static final String UPPER_PREFIX= "\n\n\n\n\n\n\n\n";
     private static final String LINE_PREFIX = "\t\t\t\t\t\t\t\t";
 
-    public String drawBoard(BoardType type) {
-        switch (type) {
-            case CHESS:
-                return drawChessBoard();
-            case CHECKERS:
-            default:
-                return drawCheckersBoard();
-        }
+    public String draw(GamePosition gamePosition) {
+        String board = drawBoard(gamePosition);
+        board = placePiecesOnBoard(board, gamePosition);
+        return board;
     }
 
-    public String drawCheckersBoard() {
-        return drawChessBoard();
-    }
-
-    public String drawChessBoard() {
+    public String drawBoard(GamePosition gamePosition) {
         StringBuilder sb = new StringBuilder(UPPER_PREFIX);
         sb.append(horizontalLetterLine());
         for (int i=8; i>0; i--) {
@@ -41,7 +34,25 @@ public class BoardServiceImpl implements BoardService {
         }
         sb.append(horizontalBoardLine());
         sb.append(horizontalLetterLine());
+        if(gamePosition.isGameFinished())
+            sb.append("\n" + gamePosition.getWinner().toString() + " WINS\n");
         return sb.toString();
+    }
+
+    private String placePiecesOnBoard(String board, GamePosition gamePosition) {
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++) {
+                if(gamePosition.getGameBoard()[i][j].isOccupied())
+                    board = placePieceOnTheBoard(board, i, j, gamePosition);
+            }
+        }
+        return board;
+    }
+
+    private String placePieceOnTheBoard(String board, int i, int j, GamePosition gamePosition) {
+        int index = BoardHelper.findCellIndex(i,j);
+        return board.substring(0, index) +
+                (gamePosition.getGameBoard()[i][j].getPiece().getSign()) + board.substring(index+1, board.length());
     }
 
     public String horizontalRankLine(int rankNumber) {

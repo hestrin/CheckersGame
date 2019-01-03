@@ -1,9 +1,9 @@
 package com.mainApp.services.checkers;
 
-import com.model.board.BoardType;
+import com.model.checkers.GamePosition;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface BoardService {
-    String drawBoard(BoardType type);
+    String draw(GamePosition gamePosition);
 }

@@ -1,18 +1,35 @@
 package com.model.checkers;
 
-public class GamePostion {
+public class GamePosition {
 
     private GameCell[][] gameBoard;
 
     private Player lastMoved;
     private boolean gameFinished;
-    private Player lastWinner;
+    private Player winner;
 
-    public GamePostion() {
+    public GamePosition(GamePosition copy) {
+        lastMoved = copy.lastMoved;
+        winner = copy.winner;
+        gameFinished = copy.gameFinished;
+        gameBoard = new GameCell[8][8];
+        initializeGameBoard(gameBoard);
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++) {
+                gameBoard[i][j] = new GameCell(copy.gameBoard[i][j]);
+            }
+        }
+    }
+
+    public GamePosition() {
         gameBoard = new GameCell[8][8];
         gameFinished = false;
-        lastWinner = null;
+        winner = null;
+        initializeGameBoard(gameBoard);
+        lastMoved = Player.BLACK;
+    }
 
+    private void initializeGameBoard(GameCell[][] gameBoard) {
         for(int i=0; i<8; i++)
             gameBoard[i] = new GameCell[8];
 
@@ -21,7 +38,6 @@ public class GamePostion {
                 gameBoard[i][j] = new GameCell();
             }
         }
-        lastMoved = Player.BLACK;
     }
 
     public void switchLastMoved() {
@@ -33,10 +49,6 @@ public class GamePostion {
 
     public GameCell[][] getGameBoard() {
         return gameBoard;
-    }
-
-    public void setGameBoard(GameCell[][] gameBoard) {
-        this.gameBoard = gameBoard;
     }
 
     public Player getLastMoved() {
@@ -55,11 +67,11 @@ public class GamePostion {
         this.gameFinished = gameFinished;
     }
 
-    public Player getLastWinner() {
-        return lastWinner;
+    public Player getWinner() {
+        return winner;
     }
 
-    public void setLastWinner(Player lastWinner) {
-        this.lastWinner = lastWinner;
+    public void setWinner(Player winner) {
+        this.winner = winner;
     }
 }
