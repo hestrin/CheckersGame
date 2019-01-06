@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Move {
 
+    private static final String files = "abcdefgh";
+
     private Piece piece;
     private int iStart;
     private int jStart;
@@ -15,12 +17,31 @@ public class Move {
     private int jDelta;
     private boolean isTaking;
     private boolean isKingMove;
-    private Player player;
     List<CapturedPiece> capturedPieces;
+
 
     @Override
     public String toString() {
-        return "i:" + iStart + " j:"+jStart + " iDelta:" + iDelta + " jDelta:" + jDelta + " CAPTURE:" + isTaking;
+        return " from " + toFile(jStart) + toRank(iStart) + " ---> " + toFile(jStart + jDelta) + toRank(iStart+iDelta)  +
+                (isTaking ? " +:" : "");
+    }
+
+    private String toFile(int j) {
+        return files.substring(j, j+1);
+    }
+
+    private String toRank(int i) {
+        return Integer.toString(i+1);
+    }
+
+    public Move(Move toCopy) {
+        piece = new Piece(toCopy.piece);
+        iStart = toCopy.iStart;
+        jStart = toCopy.jStart;
+        iDelta = toCopy.iDelta;
+        jDelta = toCopy.jDelta;
+        isTaking = toCopy.isTaking;
+        isKingMove = toCopy.isKingMove;
     }
 
     public Move(int aIStart, int aJStart, int aIDelta, int aJDelta, boolean aIsTaking, boolean aIsKingMove) {
@@ -43,75 +64,27 @@ public class Move {
         this.isKingMove = false;
     }
 
-    public boolean isKingMove() {
-        return isKingMove;
-    }
-
-    public void setKingMove(boolean kingMove) {
-        isKingMove = kingMove;
-    }
-
     public List<CapturedPiece> getCapturedPieces() {
         return capturedPieces;
-    }
-
-    public void setCapturedPieces(List<CapturedPiece> capturedPieces) {
-        this.capturedPieces = capturedPieces;
-    }
-
-    public Piece getPiece() {
-        return piece;
-    }
-
-    public void setPiece(Piece piece) {
-        this.piece = piece;
     }
 
     public int getiDelta() {
         return iDelta;
     }
 
-    public void setiDelta(int iDelta) {
-        this.iDelta = iDelta;
-    }
-
     public int getjDelta() {
         return jDelta;
-    }
-
-    public void setjDelta(int jDelta) {
-        this.jDelta = jDelta;
     }
 
     public boolean isTaking() {
         return isTaking;
     }
 
-    public void setTaking(boolean taking) {
-        isTaking = taking;
-    }
-
     public int getiStart() {
         return iStart;
     }
 
-    public void setiStart(int iStart) {
-        this.iStart = iStart;
-    }
-
     public int getjStart() {
         return jStart;
-    }
-
-    public void setjStart(int jStart) {
-        this.jStart = jStart;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
     }
 }
