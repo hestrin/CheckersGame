@@ -62,6 +62,30 @@ public class Game {
 
     }
 
+    public boolean hasNoMoreMoves() {
+        List<Move> moves = getAllowedMoves();
+        return moves == null || moves.size() == 0;
+    }
+
+    public void finishGameByDraw() {
+        gameFinished = true;
+        winner = Player.NONE;
+    }
+
+    public void finishGame() {
+        gameFinished = true;
+        winner = lastMoved;
+    }
+
+    public boolean isDrawByRepetition() {
+        if(history != null && history.size() > 3) {
+            Move lastMoveByTheSamePlayer = history.get(history.size()-2);
+            Move preLastMoveByTheSamePlayer = history.get(history.size()-4);
+            return lastMoveByTheSamePlayer.equals(preLastMoveByTheSamePlayer);
+        }
+        return false;
+    }
+
     public void addToHistory(Move move) {
         if(history == null)
             history = new ArrayList<Move>();

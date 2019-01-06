@@ -4,51 +4,50 @@ import com.mainApp.services.checkers.CheckersService;
 import com.model.checkers.CheckersBoardInitializer;
 import com.model.checkers.Game;
 import com.model.checkers.Move;
+import com.model.checkers.Player;
 import com.model.checkers.evaluation.Evaluator;
 import com.model.checkers.pieces.MoveAnalyzer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 @ComponentScan
 public class CheckersServiceImpl implements CheckersService {
 
-    private Game position;
+    private Game game;
 
     public Game nextMove() {
-        if(position == null)
+        if(game == null)
             initializePosition();
-        else if(!position.isGameFinished())
-            makeNextMove(position);
-        return position;
+        else if(!game.isGameFinished())
+            makeNextMove();
+        return game;
     }
 
     public Game restartGame() {
         initializePosition();
-        return position;
+        return game;
     }
 
     public Game showGame() {
-        return position;
+        return game;
     }
 
     private void initializePosition() {
-        position = new Game();
-        CheckersBoardInitializer.initializePieces(position);
+        game = new Game();
+        CheckersBoardInitializer.initializePieces(game);
     }
 
-    private void makeNextMove(Game game) {
-        List<Move> allowedMoves = game.getAllowedMoves();
-        if(allowedMoves != null && allowedMoves.size() > 0) {
-            Move bestMove = Evaluator.getBestMove(game);
-            this.position = MoveAnalyzer.makeMove(this.position, bestMove);
+    private void makeNextMove() {
+        if(game.hasNoMoreMoves()) {
+            game.finishGame();
+        }
+        else if(game.isDrawByRepetition()) {
+            game.finishGameByDraw();
         }
         else {
-
-            this.position.setGameFinished(true);
-            this.position.setWinner(game.getLastMoved());
+            Move bestMove = Evaluator.getBestMove(game);
+            game = MoveAnalyzer.makeMove(game, bestMove);
         }
     }
 }
