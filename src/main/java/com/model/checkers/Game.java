@@ -24,7 +24,7 @@ public class Game {
         lastMoved = toCopy.lastMoved;
         winner = toCopy.winner;
         gameFinished = toCopy.gameFinished;
-        toCopy.history = new ArrayList<>();
+        history = new ArrayList<>();
         toCopy.history.forEach(hm->history.add(new Move(hm)));
         board = new Square[8][8];
         initializeGameBoard(board);
@@ -88,7 +88,7 @@ public class Game {
 
     public void addToHistory(Move move) {
         if(history == null)
-            history = new ArrayList<Move>();
+            history = new ArrayList<>();
         history.add(move);
     }
 

@@ -35,7 +35,7 @@ public class Move {
     }
 
     public Move(Move toCopy) {
-        piece = new Piece(toCopy.piece);
+        piece = toCopy.piece != null ? new Piece(toCopy.piece) : null;
         iStart = toCopy.iStart;
         jStart = toCopy.jStart;
         iDelta = toCopy.iDelta;
@@ -86,5 +86,24 @@ public class Move {
 
     public int getjStart() {
         return jStart;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Move) {
+            Move m = (Move) obj;
+            return m.iStart == iStart &&
+                    m.jStart == jStart &&
+                    m.iDelta == iDelta &&
+                    m.jDelta == jDelta &&
+                    m.isKingMove == isKingMove &&
+                    m.isTaking == isTaking;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return 2*iStart + 3*jStart + 5*iDelta + 7*jDelta;
     }
 }

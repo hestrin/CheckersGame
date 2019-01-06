@@ -14,7 +14,7 @@ public class Evaluator {
 
     public static Move getBestMove(Game game) {
         List<MoveEvaluation> evaluations = game.getPlayerOnTheMove().equals(Player.BLACK) ?
-                sixStepEvaluation(game, MoveAnalyzer.getAllowedMoves(game)) :
+                fourStepEvaluation(game, MoveAnalyzer.getAllowedMoves(game)) :
                 fourStepEvaluation(game, MoveAnalyzer.getAllowedMoves(game));
         sortEvaluationsForPlayer(evaluations, game.getPlayerOnTheMove());
         return evaluations.get(0).getMove();
