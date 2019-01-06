@@ -1,12 +1,12 @@
 package com.mainApp.services.checkers;
 
-import com.model.checkers.GamePosition;
+import com.model.checkers.Game;
 import org.springframework.stereotype.Component;
 
 @Component
 public interface CheckersService {
 
-    GamePosition nextMove();
-    GamePosition showGame();
-    GamePosition restartGame();
+    Game nextMove();
+    Game showGame();
+    Game restartGame();
 }

@@ -2,7 +2,7 @@ package com.mainApp.services.checkers.impl;
 
 import com.mainApp.services.checkers.BoardService;
 import com.model.board.BoardHelper;
-import com.model.checkers.GamePosition;
+import com.model.checkers.Game;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -19,13 +19,13 @@ public class BoardServiceImpl implements BoardService {
     private static final String UPPER_PREFIX= "\n\n\n\n\n\n\n\n";
     private static final String LINE_PREFIX = "\t\t\t\t\t\t\t\t";
 
-    public String draw(GamePosition gamePosition) {
-        String board = drawBoard(gamePosition);
-        board = placePiecesOnBoard(board, gamePosition);
+    public String draw(Game game) {
+        String board = drawBoard(game);
+        board = placePiecesOnBoard(board, game);
         return board;
     }
 
-    public String drawBoard(GamePosition gamePosition) {
+    public String drawBoard(Game game) {
         StringBuilder sb = new StringBuilder(UPPER_PREFIX);
         sb.append(horizontalLetterLine());
         for (int i=8; i>0; i--) {
@@ -34,25 +34,25 @@ public class BoardServiceImpl implements BoardService {
         }
         sb.append(horizontalBoardLine());
         sb.append(horizontalLetterLine());
-        if(gamePosition.isGameFinished())
-            sb.append("\n" + gamePosition.getWinner().toString() + " WINS\n");
+        if(game.isGameFinished())
+            sb.append("\n" + game.getWinner().toString() + " WINS\n");
         return sb.toString();
     }
 
-    private String placePiecesOnBoard(String board, GamePosition gamePosition) {
+    private String placePiecesOnBoard(String board, Game game) {
         for(int i=0; i<8; i++){
             for(int j=0; j<8; j++) {
-                if(gamePosition.getGameBoard()[i][j].isOccupied())
-                    board = placePieceOnTheBoard(board, i, j, gamePosition);
+                if(game.getBoard()[i][j].isOccupied())
+                    board = placePieceOnBoard(board, i, j, game);
             }
         }
         return board;
     }
 
-    private String placePieceOnTheBoard(String board, int i, int j, GamePosition gamePosition) {
+    private String placePieceOnBoard(String board, int i, int j, Game game) {
         int index = BoardHelper.findCellIndex(i,j);
         return board.substring(0, index) +
-                (gamePosition.getGameBoard()[i][j].getPiece().getSign()) + board.substring(index+1, board.length());
+                (game.getBoard()[i][j].getPiece().getSign()) + board.substring(index+1, board.length());
     }
 
     public String horizontalRankLine(int rankNumber) {
@@ -68,10 +68,9 @@ public class BoardServiceImpl implements BoardService {
     }
 
     public String horizontalLetterLine() {
-        List letters = Arrays.asList("ABCDEFGH".toCharArray());
-        String str1 = "";
+        String lettersLine = "";
         for(Character letter : "ABCDEFGH".toCharArray())
-            str1 += "| " + letter + " ";
-        return LINE_PREFIX + "  " + str1 + "|\n";
+            lettersLine += "| " + letter + " ";
+        return LINE_PREFIX + "  " + lettersLine + "|\n";
     }
 }

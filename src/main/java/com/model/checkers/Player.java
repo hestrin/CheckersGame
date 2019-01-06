@@ -5,6 +5,7 @@ public enum Player {
 
     private String color;
     private int direction;
+    private PlayerStrategy strategy;
 
     Player(String aColor, int aDirection) {
         this.direction = aDirection;
@@ -17,6 +18,14 @@ public enum Player {
         else if(this.equals(Player.WHITE))
             return Player.BLACK;
         return Player.NONE;
+    }
+
+    public PlayerStrategy getStrategy() {
+        return strategy;
+    }
+
+    public void setStrategy(PlayerStrategy strategy) {
+        this.strategy = strategy;
     }
 
     public int getDirection() {

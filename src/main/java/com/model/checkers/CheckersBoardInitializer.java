@@ -3,47 +3,55 @@ package com.model.checkers;
 import com.model.checkers.pieces.Piece;
 
 public class CheckersBoardInitializer {
-    public static void initializePieces(GamePosition position) {
+    public static void initializePieces(Game position) {
         position.setLastMoved(Player.BLACK);
         initializeWhitePieces(position);
         initializeBlackPieces(position);
     }
 
-    private static void initializeWhitePieces(GamePosition position) {
-//        position.getGameBoard()[3][3].setPiece(new Piece(Player.WHITE.getColor()));
-//        position.getGameBoard()[3][3].getPiece().setPromoted(true);
+    private static void initializeWhitePieces(Game position) {
+//        position.getSquareAt('d',2).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('h',4).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('a',7).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('a',3).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('a',1).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('a',7).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('b',4).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('e',1).setPiece(new Piece(Player.WHITE.getColor()));
+//        position.getSquareAt('g',1).setPiece(new Piece(Player.WHITE.getColor()));
 
-        position.getGameBoard()[0][0].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[0][2].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[0][4].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[0][6].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[1][1].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[1][3].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[1][5].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[1][7].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[2][0].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[2][2].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[2][4].setPiece(new Piece(Player.WHITE.getColor()));
-        position.getGameBoard()[2][6].setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('a',1).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('c',1).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('e',1).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('g',1).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('b',2).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('d',2).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('f',2).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('h',2).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('a',3).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('c',3).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('e',3).setPiece(new Piece(Player.WHITE.getColor()));
+        position.getSquareAt('g',3).setPiece(new Piece(Player.WHITE.getColor()));
     }
 
-    private static void initializeBlackPieces(GamePosition position) {
-//        position.getGameBoard()[4][4].setPiece(new Piece(Player.BLACK.getColor()));
-//        position.getGameBoard()[7][7].setPiece(new Piece(Player.BLACK.getColor()));
-//        position.getGameBoard()[1][5].setPiece(new Piece(Player.BLACK.getColor()));
+    private static void initializeBlackPieces(Game position) {
+//        position.getSquareAt('e',3).setPiece(new Piece(Player.BLACK.getColor()));
+//        position.getSquareAt('e',5).setPiece(new Piece(Player.BLACK.getColor()));
+//        position.getSquareAt('g',5).setPiece(new Piece(Player.BLACK.getColor()));
+//        position.getSquareAt('e',7).setPiece(new Piece(Player.BLACK.getColor()));
+//        position.getSquareAt('g',7).setPiece(new Piece(Player.BLACK.getColor()));
 
-        position.getGameBoard()[7][1].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[7][3].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[7][5].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[7][7].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[6][0].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[6][2].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[6][4].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[6][6].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[5][1].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[5][3].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[5][5].setPiece(new Piece(Player.BLACK.getColor()));
-        position.getGameBoard()[5][7].setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('b',8).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('d',8).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('f',8).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('h',8).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('a',7).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('c',7).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('e',7).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('g',7).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('b',6).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('d',6).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('f',6).setPiece(new Piece(Player.BLACK.getColor()));
+        position.getSquareAt('h',6).setPiece(new Piece(Player.BLACK.getColor()));
     }
-
 }
