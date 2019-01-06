@@ -97,7 +97,7 @@ public class MoveAnalyzer {
         for(Direction captureDirection : getAllowedDirections(i, j, forbiddenDirection, forbiddenDirections))
         {
             if(canPawnCapture(position,i, j, player, captureDirection, originI, originJ)) {
-                System.out.println( "Pawn capture i:" + i + " j:" + j + " direction :" + captureDirection);
+//                System.out.println( "Pawn capture i:" + i + " j:" + j + " direction :" + captureDirection);
                 if(forbiddenDirections == null)
                     forbiddenDirections = new HashMap<>();
                 List<Direction> forbiddenDirectionsAtIJ = forbiddenDirections.get(new Coordinates(i,j));
