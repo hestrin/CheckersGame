@@ -152,6 +152,8 @@ public class MoveAnalyzer {
     }
 
     private static List<Move> getCaptureKingsMoves(Game position, int i, int j, Player player) {
+        // for now only single taking for king type pawns is allowed.
+        //  TODO allow multiple takings
         List<Move> captures = new ArrayList<>();
         for(Direction d : Direction.values()) {
             for(int k=1; k<7; k++) {
