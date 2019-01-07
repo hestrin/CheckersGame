@@ -20,12 +20,16 @@ public class Game {
         return (new BoardServiceImpl()).draw(this);
     }
 
+    public int getWhitePiecesCount() {
+        return 1;
+    }
+
+
     public Game(Game toCopy) {
         lastMoved = toCopy.lastMoved;
         winner = toCopy.winner;
         gameFinished = toCopy.gameFinished;
-        toCopy.history = new ArrayList<>();
-        toCopy.history.forEach(hm->history.add(new Move(hm)));
+        copyHistory(toCopy);
         board = new Square[8][8];
         initializeGameBoard(board);
         for(int i=0; i<8; i++){
@@ -33,6 +37,11 @@ public class Game {
                 board[i][j] = new Square(toCopy.board[i][j]);
             }
         }
+    }
+
+    private void copyHistory(Game toCopy) {
+        toCopy.history = new ArrayList<>();
+        toCopy.history.forEach(hm->history.add(new Move(hm)));
     }
 
     public Game() {
@@ -64,7 +73,7 @@ public class Game {
 
     public void addToHistory(Move move) {
         if(history == null)
-            history = new ArrayList<Move>();
+            history = new ArrayList<>();
         history.add(move);
     }
 
@@ -72,14 +81,6 @@ public class Game {
         if(getBoard()  == null)
             return null;
         return getBoard()[toIndexI(rank)][toIndexJ(file)];
-    }
-
-    public List<Move> getHistory() {
-        return history;
-    }
-
-    public void setHistory(List<Move> history) {
-        this.history = history;
     }
 
     private int toIndexI(int rank) {

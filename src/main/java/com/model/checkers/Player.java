@@ -1,7 +1,9 @@
 package com.model.checkers;
 
 public enum Player {
-    WHITE("W", 1), BLACK("B", -1), NONE("N", 0);
+    WHITE("W", 1, PlayerStrategy.TWO_STEP_PREDICTION_WITH_CUTS),
+    BLACK("B", -1, PlayerStrategy.EIGHT_STEP_PREDICTION_WITH_CUTS),
+    NONE("N", 0);
 
     private String color;
     private int direction;
@@ -9,7 +11,13 @@ public enum Player {
 
     Player(String aColor, int aDirection) {
         this.direction = aDirection;
+        this.color =  aColor;;
+    }
+
+    Player(String aColor, int aDirection, PlayerStrategy aStrategy) {
+        this.direction = aDirection;
         this.color =  aColor;
+        this.strategy = aStrategy;
     }
 
     public Player getOpponent() {

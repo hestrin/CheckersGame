@@ -44,6 +44,10 @@ public class Move {
         isKingMove = toCopy.isKingMove;
     }
 
+    public Move() {
+
+    }
+
     public Move(int aIStart, int aJStart, int aIDelta, int aJDelta, boolean aIsTaking, boolean aIsKingMove) {
         this.iStart = aIStart;
         this.jStart = aJStart;
