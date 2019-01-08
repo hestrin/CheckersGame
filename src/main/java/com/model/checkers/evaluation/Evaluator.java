@@ -72,7 +72,7 @@ public class Evaluator {
             final Game copy = MoveAnalyzer.makeMove(new Game(game), move);
             evaluations.add(new MoveEvaluation(move, Evaluator.asses(copy)));
         }
-        sortEvaluationsForPlayer(evaluations, game.getPlayerOnTheMove());
+        sortEvaluationsForPlayer(evaluations, game.getPlayerOnTheMove().getOpponent());
 
         for(int i=0; i<Math.floor(strategy.getCutPercent()/100*evaluations.size())+1; i++)
             limitedResponses.add(evaluations.get(i).getMove());

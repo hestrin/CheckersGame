@@ -11,7 +11,7 @@ public enum Player {
 
     Player(String aColor, int aDirection) {
         this.direction = aDirection;
-        this.color =  aColor;;
+        this.color =  aColor;
     }
 
     Player(String aColor, int aDirection, PlayerStrategy aStrategy) {
